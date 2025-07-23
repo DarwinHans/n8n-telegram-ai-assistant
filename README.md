@@ -32,8 +32,6 @@ Este proyecto es un flujo avanzado de automatización desarrollado en **n8n**, q
 
 ---
 
-## 🛠️ Instalación y uso
-
 ### 1. Clona este repositorio
 
 ```bash
