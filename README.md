@@ -1,5 +1,8 @@
 # 🤖 Telegram AI Assistant con Google Calendar y OpenAI | n8n Workflow
 
+<img width="1199" height="466" alt="Captura de Pantalla 2025-07-23 a la(s) 09 04 36" src="https://github.com/user-attachments/assets/7a72ed7b-9764-4e46-be12-87f7fedd3754" />
+
+
 Este proyecto es un flujo avanzado de automatización desarrollado en **n8n**, que convierte un bot de Telegram en un asistente virtual inteligente capaz de:
 
 - 📩 Recibir mensajes de texto o audio vía Telegram
