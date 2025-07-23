@@ -7,21 +7,15 @@
         ],
         "additionalFields": {}
       },
-      "id": "cb6da831-90b9-4fa3-a120-6e2ea3780178",
+      "id": "18e5994a-ef7e-4c64-9935-064e9f55e9aa",
       "name": "Telegram Trigger",
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1,
       "position": [
-        -140,
+        -100,
         -80
       ],
-      "webhookId": "telegram-trigger",
-      "credentials": {
-        "telegramApi": {
-          "id": "AvXKtx8DiTgF4Erf",
-          "name": "TelegramBot"
-        }
-      }
+      "webhookId": "REDACTED_WEBHOOK"
     },
     {
       "parameters": {
@@ -39,12 +33,12 @@
         },
         "options": {}
       },
-      "id": "aa0cfc29-748b-4764-b167-23563f956329",
+      "id": "9c0d18d3-4f47-46c9-8063-e4a62363d1ca",
       "name": "Edit Fields",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3,
       "position": [
-        80,
+        120,
         -80
       ]
     },
@@ -54,12 +48,12 @@
         "text": "={{ $json.mensaje }}\t",
         "options": {}
       },
-      "id": "12392ebd-5209-40ba-9d88-50665fd3da21",
+      "id": "288473a8-52b3-4e8d-96d1-575c179d3c16",
       "name": "AI Agent1",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1,
       "position": [
-        1200,
+        1240,
         -80
       ]
     },
@@ -67,12 +61,12 @@
       "parameters": {
         "jsCode": "return items.map(item => {\n  const originalText = $input.first().json.output;\n\n  if (typeof originalText !== 'string') {\n    return {\n      json: {\n        error: 'El campo \"text\" no existe o no es un texto',\n        original: originalText\n      }\n    };\n  }\n\n  let cleaned = originalText\n    .replace(/<[^>]*>/g, '')\n    .replace(/\\r?\\n|\\r/g, ' ')\n    .replace(/\\t+/g, ' ')\n    .replace(/[^\\p{L}\\p{N},.¿?:?\\s]+/gu, '')\n    .replace(/\\s+/g, ' ')\n    .trim();\n\n  return {\n    json: {\n      cleaned\n    }\n  };\n});"
       },
-      "id": "7f2e2aea-70ff-4d10-aba8-6ce477f35bc9",
+      "id": "55ab3d2f-89bd-428f-949a-f9a0e7e2e5a2",
       "name": "Clean Text",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1580,
+        1620,
         -80
       ]
     },
@@ -82,21 +76,15 @@
         "text": "={{ $json.cleaned }}",
         "additionalFields": {}
       },
-      "id": "aad1b725-5e11-41d3-829f-a555ec3875f4",
+      "id": "9354d533-9572-4a36-9a0b-04bf3c57f55a",
       "name": "Send Telegram Message",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1,
       "position": [
-        2020,
+        2060,
         -80
       ],
-      "webhookId": "31f11b96-5279-4983-ac12-757a85a0292f",
-      "credentials": {
-        "telegramApi": {
-          "id": "AvXKtx8DiTgF4Erf",
-          "name": "TelegramBot"
-        }
-      }
+      "webhookId": "REDACTED_WEBHOOK"
     },
     {
       "parameters": {
@@ -111,17 +99,11 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        840,
+        880,
         260
       ],
-      "id": "9c394c65-be9d-40fb-b58a-fdea75c62670",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "kny0EOzPtXmDC3b2",
-          "name": "OpenAi account"
-        }
-      }
+      "id": "0c72a962-018a-409f-bb4a-0cb9082dd930",
+      "name": "OpenAI Chat Model"
     },
     {
       "parameters": {
@@ -132,24 +114,18 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        740,
+        780,
         -240
       ],
-      "id": "7f27376b-ab54-4475-86b4-df2661d28daf",
-      "name": "Transcribir audio",
-      "credentials": {
-        "openAiApi": {
-          "id": "kny0EOzPtXmDC3b2",
-          "name": "OpenAi account"
-        }
-      }
+      "id": "3b93061d-8438-4970-8f72-81a70001f5a4",
+      "name": "Transcribir audio"
     },
     {
       "parameters": {
         "assignments": {
           "assignments": [
             {
-              "id": "defa1545-074d-4d6a-a21f-a95c2226995f",
+              "id": "REDACTED_ID",
               "name": "mensaje",
               "value": "={{ $json.text }}",
               "type": "string"
@@ -161,10 +137,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        940,
+        980,
         -80
       ],
-      "id": "c64ea7a9-6372-42db-93f9-7d2dc1a94704",
+      "id": "74a70d48-8b11-424c-8f86-0099d30d6b0f",
       "name": "Mapear mensaje"
     },
     {
@@ -175,10 +151,10 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        980,
+        1020,
         260
       ],
-      "id": "50299058-fe20-46d1-8902-05c7c178df3b",
+      "id": "fd6a8fa7-6f07-4f8d-bcce-b6d61b8785d0",
       "name": "Simple Memory"
     },
     {
@@ -200,17 +176,11 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        1300,
+        1340,
         260
       ],
-      "id": "9cbc4847-13a7-4bb4-83ea-699bda2a94d4",
-      "name": "Crear evento",
-      "credentials": {
-        "googleCalendarOAuth2Api": {
-          "id": "iLgXCmlwUQw3pmSy",
-          "name": "Google Calendar account"
-        }
-      }
+      "id": "8f8ba8c0-18a2-40ce-a356-15b9dcf5ae76",
+      "name": "Crear evento"
     },
     {
       "parameters": {
@@ -229,17 +199,11 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        1160,
+        1200,
         260
       ],
-      "id": "6c40c524-6123-47f7-bb05-341c5b583393",
-      "name": "Eliminar evento",
-      "credentials": {
-        "googleCalendarOAuth2Api": {
-          "id": "iLgXCmlwUQw3pmSy",
-          "name": "Google Calendar account"
-        }
-      }
+      "id": "93710240-6429-414a-93bd-4449cb0f7464",
+      "name": "Eliminar evento"
     },
     {
       "parameters": {
@@ -256,17 +220,11 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        1440,
+        1480,
         260
       ],
-      "id": "011e787e-a6c6-4c6e-82b0-c3e95cfb8cf6",
-      "name": "Actualizar evento",
-      "credentials": {
-        "googleCalendarOAuth2Api": {
-          "id": "iLgXCmlwUQw3pmSy",
-          "name": "Google Calendar account"
-        }
-      }
+      "id": "de388a58-91b0-4ef5-a1e8-b12237f6c944",
+      "name": "Actualizar evento"
     },
     {
       "parameters": {
@@ -285,17 +243,11 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        1580,
+        1620,
         260
       ],
-      "id": "eacc1852-d935-48e1-a233-070b5c16d6f7",
-      "name": "Comprobar disponibilidad",
-      "credentials": {
-        "googleCalendarOAuth2Api": {
-          "id": "iLgXCmlwUQw3pmSy",
-          "name": "Google Calendar account"
-        }
-      }
+      "id": "a8a0d2eb-f22d-4606-8cf8-a6347bc09ae1",
+      "name": "Comprobar disponibilidad"
     },
     {
       "parameters": {
@@ -317,7 +269,7 @@
                       "type": "string",
                       "operation": "equals"
                     },
-                    "id": "80459009-c756-45dc-956a-525991463fd7"
+                    "id": "REDACTED_ID"
                   }
                 ],
                 "combinator": "and"
@@ -335,7 +287,7 @@
                 },
                 "conditions": [
                   {
-                    "id": "4a5566da-4266-487e-91a8-713dc4e87b63",
+                    "id": "REDACTED_ID",
                     "leftValue": "={{ $json.message.text ? 'texto' : $json.message.voice ? 'audio' : 'otro' }}",
                     "rightValue": "texto",
                     "operator": {
@@ -360,7 +312,7 @@
                 },
                 "conditions": [
                   {
-                    "id": "d93de382-f532-4968-bbb2-36316ecac0e0",
+                    "id": "REDACTED_ID",
                     "leftValue": "={{ $json.message.text ? 'texto' : $json.message.voice ? 'audio' : 'otro' }}",
                     "rightValue": "otro",
                     "operator": {
@@ -382,10 +334,10 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        340,
+        380,
         -80
       ],
-      "id": "2731634c-1d09-44df-86fa-0a85bc3539df",
+      "id": "2163679a-e53c-4687-a20d-b990b4ae9d86",
       "name": "Switch1"
     },
     {
@@ -396,18 +348,12 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        540,
+        580,
         -240
       ],
-      "id": "b39a1a76-96fc-4ef3-a943-1e13dce55103",
+      "id": "845d92ed-c288-42ed-9996-eee1d7202361",
       "name": "Get a file",
-      "webhookId": "fdac238f-c182-4d5e-b421-c921998d8bbb",
-      "credentials": {
-        "telegramApi": {
-          "id": "AvXKtx8DiTgF4Erf",
-          "name": "TelegramBot"
-        }
-      }
+      "webhookId": "REDACTED_WEBHOOK"
     }
   ],
   "connections": {
@@ -575,7 +521,6 @@
   },
   "pinData": {},
   "meta": {
-    "templateCredsSetupCompleted": true,
     "instanceId": "4cd1a014aef30f6865e03b1c5e2bd1d95bfbea4c60e065451e8e430920f2012f"
   }
 }
